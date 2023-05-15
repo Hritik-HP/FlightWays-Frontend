@@ -1,0 +1,145 @@
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+    <style>
+      .background-radial-gradient {
+        background-color: hsl(218, 41%, 15%);
+        background-image: radial-gradient(650px circle at 0% 0%,
+            hsl(218, 41%, 35%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%),
+          radial-gradient(1250px circle at 100% 100%,
+            hsl(218, 41%, 45%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%);
+      }
+      .hover-scale-up {
+  transition: transform 0.2s ease-in-out;
+}
+.hover-scale-up:hover {
+  transform: scale(1.1);
+}
+.form-outline input {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-text {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #444;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+button:hover {
+  background-color: #040404;
+  color: white;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+button:active {
+  transform: scale(0.95);
+  transition: transform 0.3s ease-in-out;
+}
+
+button {
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+
+  
+      #radius-shape-1 {
+        height: 220px;
+        width: 220px;
+        top: -60px;
+        left: -130px;
+        background: radial-gradient(#44006b, #ad1fff);
+        overflow: hidden;
+      }
+  
+      #radius-shape-2 {
+        border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+        bottom: -60px;
+        right: -110px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(#9322d4, #ad1fff);
+        overflow: hidden;
+      }
+  
+      .bg-glass {
+        background-color: hsla(0, 0%, 100%, 0.9) !important;
+        backdrop-filter: saturate(200%) blur(25px);
+      }
+    </style>
+  
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+      <div class="row gx-lg-5 align-items-center mb-5">
+        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+            The best Way To Book <br />
+            <span style="color: hsl(218, 81%, 75%)">To Your Destination</span>
+          </h1>
+          <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+            Welcome to our flight booking website! We offer a convenient and hassle-free way to book your flights at competitive prices. With a wide selection of airlines and destinations, you can easily find the perfect flight to fit your travel needs.
+          </p>
+        </div>
+  
+        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+          <div class="card bg-glass">
+            <div class="signup-container px-4 py-5 px-md-5">
+              <h2 class="signup-text">Sign Up</h2>
+              <form> 
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="text" id="form" class="form-control" />
+                      <label class="form-label" for="form">Name</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <input type="tel" id="phone" class="form-control" />
+                      <label class="form-label" for="phone">Phone number</label>
+                    </div>
+                  </div>
+                  
+                </div>
+  
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3" class="form-control" />
+                  <label class="form-label" for="form3Example3">Email address</label>
+                </div>
+  
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4" class="form-control" />
+                  <label class="form-label" for="form3Example4">Password</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block mb-4 hover-scale-up"  style="padding: 10px 50px; font-size: 20px; display: block; margin: 0 auto;">
+                  Register
+                </button>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

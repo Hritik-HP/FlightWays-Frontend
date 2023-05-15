@@ -1,0 +1,98 @@
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-md-push-5">
+                    <div class="booking-cta">
+                        <h1>Book Now, Fly Later <br> Secure Your Seat Today</h1>
+                        <p>
+                            Secure your dream getaway now and have something to look forward to in the future!
+                             Our 'Book Now, Fly Later' offer allows you to lock in the best prices and secure your seat before they're gone. 
+                             Whether it's a beach vacation or an adventure in the mountains, 
+                            take advantage of this amazing opportunity and start planning your next adventure today!
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-pull-7">
+                    <div class="booking-form">
+                        <form>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="flightType" id="oneWay" value="one-way" checked (change)="onRadioChange($event)">
+                                <label class="form-check-label" for="oneWay">One-Way</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="flightType" id="return" value="return" (change)="onRadioChange($event)">
+                                <label class="form-check-label" for="return">Return</label>
+                              </div>
+                              
+                              
+                              
+                            <div class="form-group">
+                                <span class="form-label">From</span>
+                                <input class="form-control" type="text" placeholder="From">
+                            </div>
+                            <div class="form-group">
+                                <span class="form-label">To</span>
+                                <input class="form-control" type="text" placeholder="To">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Depart Date</span>
+                                        <input class="form-control" type="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group return-date" *ngIf="showReturnDate">
+                                        <span class="form-label">Return Date</span>
+                                        <input class="form-control" type="date" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn">
+                                <button class="submit-btn">Check availability</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="height: 50px;"></div>
+
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../assets/jaipur.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Jaipur</h3>
+          <p>Some representative placeholder content for the first slide.</p>
+        </div>
+      </div>
+     
+      <div class="carousel-item">
+        <img src="../../assets/agra.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h3>Agra</h3>
+          <p>Some representative placeholder content for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div style="height: 50px;"></div>

@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <h2><a class="navbar-brand ms-lg-5 fw-bold" href="#">Flight Ways</a></h2>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" style="border-radius: 50px; padding: 10px; transition: all 0.2s;">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="border-radius: 50px; padding: 10px; transition: all 0.2s;">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="border-radius: 50px; padding: 10px; transition: all 0.2s;">Destination</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="border-radius: 50px; padding: 10px; transition: all 0.2s;">Contact</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" style="border-radius: 50px; padding: 10px; transition: all 0.2s;"
+         role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Profile
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLink="/login">Login/Sign Up</a></li>
+          <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+          <li><a class="dropdown-item" href="#">Log Out</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus {
+    color: #fff;
+    transform: scale(1.1);
+  }
+</style>

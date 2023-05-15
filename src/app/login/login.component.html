@@ -1,0 +1,98 @@
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+  <style>
+    .background-radial-gradient {
+      background-color: hsl(218, 41%, 15%);
+      background-image: radial-gradient(650px circle at 0% 0%,
+         
+          hsl(218, 41%, 45%) 15%,
+          hsl(218, 41%, 30%) 35%,
+          hsl(218, 41%, 20%) 75%,
+          hsl(218, 41%, 19%) 80%,
+          transparent 100%),
+        radial-gradient(1250px circle at 100% 100%,
+          hsl(219, 49%, 46%) 15%,
+          hsl(218, 59%, 49%) 35%,
+          hsl(219, 82%, 49%) 75%,
+          hsl(218, 98%, 50%) 80%,
+          transparent 100%);
+    }
+    
+.hover-scale-up {
+transition: transform 0.2s ease-in-out;
+}
+
+.hover-scale-up:hover {
+transform: scale(1.1);
+}
+
+.form-outline input {
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+background-color: #040404;
+color: white;
+transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+  </style>
+
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form>
+            
+
+            <div class="divider d-flex align-items-center my-4">
+              <h1><p class="text-center fw-bold mx-3 mb-0">Login</p></h1>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="email" id="form3Example3" class="form-control form-control-lg"
+                placeholder="Enter a valid email address" />
+              <h5><label class="form-label" for="form3Example3">Email </label></h5>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+              <input type="password" id="form3Example4" class="form-control form-control-lg"
+                placeholder="Enter password" />
+              <h5><label class="form-label" for="form3Example4">Password</label></h5>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Checkbox -->
+              <div class="form-check mb-0">
+                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                <h5>  <label class="form-check-label" for="form2Example3">
+                  Remember me
+                </label> </h5>
+              </div>
+             <h5>
+              <a href="#!" class="text-body">Forgot password?</a>
+             </h5>
+            </div>
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="button" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                <span>Login</span>
+              </button>
+              
+            <h5>  <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
+                <a class="link-danger" routerLink="/signup">Register</a></p> </h5>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+   
+  </section>
+</section>
