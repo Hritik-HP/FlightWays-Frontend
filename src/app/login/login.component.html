@@ -46,7 +46,7 @@ transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
             class="img-fluid" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form>
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
             
 
             <div class="divider d-flex align-items-center my-4">
@@ -54,19 +54,20 @@ transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
             </div>
 
             <!-- Email input -->
+            <h5><small class="text-danger">*Email is Required </small></h5>
             <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control form-control-lg"
+              <input type="email" formControlName = "emailAddress" id="form3Example3" class="form-control form-control-lg"
                 placeholder="Enter a valid email address" />
               <h5><label class="form-label" for="form3Example3">Email </label></h5>
             </div>
-
+            <h5><small class="text-danger">*Password is Required </small></h5>
             <!-- Password input -->
             <div class="form-outline mb-3">
-              <input type="password" id="form3Example4" class="form-control form-control-lg"
+              <input type="password" formControlName = "password" id="form3Example4" class="form-control form-control-lg"
                 placeholder="Enter password" />
               <h5><label class="form-label" for="form3Example4">Password</label></h5>
             </div>
-
+            
             <div class="d-flex justify-content-between align-items-center">
               <!-- Checkbox -->
               <div class="form-check mb-0">
@@ -78,11 +79,11 @@ transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
              <h5>
               <a href="#!" class="text-body">Forgot password?</a>
              </h5>
-            </div>
+            </div> 
 
             <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                <span>Login</span>
+              <button (click)="onLogin()" type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                <span><a class="text-white">Login</a></span>
               </button>
               
             <h5>  <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 

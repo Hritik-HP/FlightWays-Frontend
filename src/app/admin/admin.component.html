@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="header">
+      <h1 class="text-center">Flight Ways Admin Portal</h1>
+    </div>
+  
+    <div class="form-container">
+      <!-- Form content -->
+    </div>
+  
+    <div class="table-container" *ngIf="showUserDetails && users.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">UserId</th>
+            <th scope="col">UserName</th>
+            <th scope="col">EmailAddress</th>
+            <th scope="col">Password</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.userId }}</td>
+            <td>
+              <ng-container *ngIf="user.editMode">
+                <input type="text" [(ngModel)]="user.userName" class="form-control">
+              </ng-container>
+              <ng-container *ngIf="!user.editMode">{{ user.userName }}</ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="user.editMode">
+                <input type="text" [(ngModel)]="user.emailAddress" class="form-control">
+              </ng-container>
+              <ng-container *ngIf="!user.editMode">{{ user.emailAddress }}</ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="user.editMode">
+                <input type="password" [(ngModel)]="user.password" class="form-control">
+              </ng-container>
+              <ng-container *ngIf="!user.editMode">{{ user.password }}</ng-container>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteUser(user.userId)">Delete</button>
+              <button class="btn btn-primary" (click)="toggleEditMode(user)">Update</button>
+              <button class="btn btn-success" (click)="saveUser(user)" *ngIf="user.editMode">Save</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+   <h6> <p class="message">
+      1. Click the button to show users.
+      <button class="btn btn-primary" (click)="toggleUserDetails()" [disabled]="showUserDetails">Show All Users</button>
+      <button class="btn btn-secondary" (click)="hideUserDetails()" [hidden]="!showUserDetails || users.length === 0">Hide User Details</button>
+    </p></h6>
+  </div>
+  

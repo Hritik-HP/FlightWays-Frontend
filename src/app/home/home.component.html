@@ -15,44 +15,43 @@
                 </div>
                 <div class="col-md-4 col-md-pull-7">
                     <div class="booking-form">
-                        <form>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="flightType" id="oneWay" value="one-way" checked (change)="onRadioChange($event)">
-                                <label class="form-check-label" for="oneWay">One-Way</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="flightType" id="return" value="return" (change)="onRadioChange($event)">
-                                <label class="form-check-label" for="return">Return</label>
-                              </div>
-                              
-                              
-                              
+                      <form (submit)="searchFlights()" [formGroup]="flightSearchForm">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="flightType" id="oneWay" value="one-way" checked (change)="onRadioChange($event)">
+                          <label class="form-check-label" for="oneWay">One-Way</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="flightType" id="return" value="return" (change)="onRadioChange($event)">
+                          <label class="form-check-label" for="return">Return</label>
+                        </div>
+              
+                        <div class="form-group">
+                          <span class="form-label">From</span>
+                          <input class="form-control" type="text" formControlName="departCity" placeholder="From">
+                        </div>
+                        <div class="form-group">
+                          <span class="form-label">To</span>
+                          <input class="form-control" type="text" formControlName="arrivalCity" placeholder="To">
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6">
                             <div class="form-group">
-                                <span class="form-label">From</span>
-                                <input class="form-control" type="text" placeholder="From">
+                              <span class="form-label">Depart Date</span>
+                              <input class="form-control" type="date" formControlName="departureTime" required>
                             </div>
-                            <div class="form-group">
-                                <span class="form-label">To</span>
-                                <input class="form-control" type="text" placeholder="To">
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group return-date" *ngIf="showReturnDate">
+                              <span class="form-label">Return Date</span>
+                              <input class="form-control" type="date" formControlName="returnDate" required>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <span class="form-label">Depart Date</span>
-                                        <input class="form-control" type="date" required>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group return-date" *ngIf="showReturnDate">
-                                        <span class="form-label">Return Date</span>
-                                        <input class="form-control" type="date" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-btn">
-                                <button class="submit-btn">Check availability</button>
-                            </div>
-                        </form>
+                          </div>
+                        </div>
+                        <div class="form-btn">
+                          <button type="submit" class="submit-btn">Check availability</button>
+                        </div>
+                      </form>
+                      
                     </div>
                 </div>
             </div>

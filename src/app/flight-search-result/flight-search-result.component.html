@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Flight Search Results</h2>
+
+  <div *ngIf="flights.length > 0">
+    <div class="card mb-3" *ngFor="let flight of flights">
+      <div class="card-body">
+        <div class="flight-info">
+          <span class="flight-name">{{ flight.flightName }}</span>
+          <span class="flight-number">{{ flight.flightNumber }}</span>
+        </div>
+        <div class="departure-arrival">
+          <span class="departure">{{ flight.departureCity }}</span>
+          <span class="arrival">{{ flight.arrivalCity }}</span>
+        </div>
+        <p class="departure-date">Departure Date: {{ flight.departureDateTime | date: 'yyyy-MM-dd' }}</p>
+        <p class="total-seats">Total Seats: {{ flight.totalSeats }}</p>
+        <p class="price">Price: {{ flight.basePrice }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="flights.length === 0" class="no-flights">
+    <p>No flights found.</p>
+  </div>
+</div>
