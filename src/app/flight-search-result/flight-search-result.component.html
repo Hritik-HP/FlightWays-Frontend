@@ -5,16 +5,21 @@
     <div class="card mb-3" *ngFor="let flight of flights">
       <div class="card-body">
         <div class="flight-info">
-          <span class="flight-name">{{ flight.flightName }}</span>
-          <span class="flight-number">{{ flight.flightNumber }}</span>
+          <div>
+            <h5 class="flight-name">Flight: {{ flight.flightNumber }}</h5>
+            <p class="departure-arrival">
+              <span class="departure">Departure: {{ flight.departureCity }}</span>
+              <span class="dotted-line"></span>
+              <span class="arrival">Arrival: {{ flight.arrivalCity }}</span>
+            </p>
+            <p class="departure-date">Departure Date: {{ flight.departureDateTime | date: 'yyyy-MM-dd' }}</p>
+          </div>
+          <div>
+            <p class="total-seats">Total Seats: {{ flight.totalSeats }}</p>
+            <p class="price">Price: {{ flight.basePrice }}</p>
+            <button class="btn btn-primary">Book Flight</button>
+          </div>
         </div>
-        <div class="departure-arrival">
-          <span class="departure">{{ flight.departureCity }}</span>
-          <span class="arrival">{{ flight.arrivalCity }}</span>
-        </div>
-        <p class="departure-date">Departure Date: {{ flight.departureDateTime | date: 'yyyy-MM-dd' }}</p>
-        <p class="total-seats">Total Seats: {{ flight.totalSeats }}</p>
-        <p class="price">Price: {{ flight.basePrice }}</p>
       </div>
     </div>
   </div>

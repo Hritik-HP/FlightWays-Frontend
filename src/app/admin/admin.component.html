@@ -1,58 +1,148 @@
 <div class="container">
-    <div class="header">
-      <h1 class="text-center">Flight Ways Admin Portal</h1>
+  <div class="header">
+    <h1 class="text-center">Flight Ways Admin Portal</h1>
+  </div>
+
+  <div class="form-container">
+    <!-- Form content -->
+  </div>
+
+  <div class="table-container" *ngIf="showUserDetails && users.length > 0">
+    <h3>User Details</h3>
+    <table class="table table-striped">
+      <!-- User table header -->
+      <thead>
+        <tr>
+          <th scope="col">UserId</th>
+          <th scope="col">UserName</th>
+          <th scope="col">EmailAddress</th>
+          <th scope="col">Password</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <!-- User table row -->
+          <td>{{ user.userId }}</td>
+          <td>{{ user.userName }}</td>
+          <td>{{ user.emailAddress }}</td>
+          <td>{{ user.password }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteUser(user.userId)">Delete</button>
+            <button class="btn btn-primary" (click)="toggleEditMode(user)">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-container" *ngIf="showFlightDetails">
+    <h3>Flight Details</h3>
+    <table class="table table-striped">
+      <!-- Flight table header -->
+      <thead>
+        <tr>
+          <th scope="col">FlightId</th>
+          <th scope="col">FlightName</th>
+          <th scope="col">FlightNumber</th>
+          <th scope="col">DepartureCity</th>
+          <th scope="col">ArrivalCity</th>
+          <th scope="col">DepartureDateTime</th>
+          <th scope="col">ArrivalDateTime</th>
+          <th scope="col">DepartureCityCode</th>
+          <th scope="col">ArrivalCityCode</th>
+          <th scope="col">BasePrice</th>
+          <th scope="col">TotalSeats</th>
+          <th scope="col">AvailableSeats</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flight of flights">
+          <!-- Flight table row -->
+          <td>{{ flight.flightId }}</td>
+          <td>{{ flight.flightName }}</td>
+          <td>{{ flight.flightNumber }}</td>
+          <td>{{ flight.departureCity }}</td>
+          <td>{{ flight.arrivalCity }}</td>
+          <td>{{ flight.departureDateTime }}</td>
+          <td>{{ flight.arrivalDateTime }}</td>
+          <td>{{ flight.departureCityCode }}</td>
+          <td>{{ flight.arrivalCityCode }}</td>
+          <td>{{ flight.basePrice }}</td>
+          <td>{{ flight.totalSeats }}</td>
+          <td>{{ flight.availableSeats }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteFlight(flight.flightId)">Delete</button>
+            <button class="btn btn-primary" (click)="toggleFlightEditMode(flight)">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Add Flight form -->
+    <div class="add-flight-form">
+      <h3>Add Flight</h3>
+      <div class="form-group">
+        <label for="flightName">Flight Name</label>
+        <input type="text" id="flightName" [(ngModel)]="newFlight.flightName" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="flightNumber">Flight Number</label>
+        <input type="text" id="flightNumber" [(ngModel)]="newFlight.flightNumber" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="departureCity">Departure City</label>
+        <input type="text" id="departureCity" [(ngModel)]="newFlight.departureCity" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="arrivalCity">Arrival City</label>
+        <input type="text" id="arrivalCity" [(ngModel)]="newFlight.arrivalCity" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="departureDateTime">Departure Date and Time</label>
+        <input type="datetime-local" id="departureDateTime" [(ngModel)]="newFlight.departureDateTime" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="arrivalDateTime">Arrival Date and Time</label>
+        <input type="datetime-local" id="arrivalDateTime" [(ngModel)]="newFlight.arrivalDateTime" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="departureCityCode">Departure City Code</label>
+        <input type="text" id="departureCityCode" [(ngModel)]="newFlight.departureCityCode" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="arrivalCityCode">Arrival City Code</label>
+        <input type="text" id="arrivalCityCode" [(ngModel)]="newFlight.arrivalCityCode" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="basePrice">Base Price</label>
+        <input type="number" id="basePrice" [(ngModel)]="newFlight.basePrice" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="totalSeats">Total Seats</label>
+        <input type="number" id="totalSeats" [(ngModel)]="newFlight.totalSeats" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="availableSeats">Available Seats</label>
+        <input type="number" id="availableSeats" [(ngModel)]="newFlight.availableSeats" class="form-control">
+      </div>
+      <button class="btn btn-primary" (click)="addFlight()">Add Flight</button>
     </div>
-  
-    <div class="form-container">
-      <!-- Form content -->
-    </div>
-  
-    <div class="table-container" *ngIf="showUserDetails && users.length > 0">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">UserId</th>
-            <th scope="col">UserName</th>
-            <th scope="col">EmailAddress</th>
-            <th scope="col">Password</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td>{{ user.userId }}</td>
-            <td>
-              <ng-container *ngIf="user.editMode">
-                <input type="text" [(ngModel)]="user.userName" class="form-control">
-              </ng-container>
-              <ng-container *ngIf="!user.editMode">{{ user.userName }}</ng-container>
-            </td>
-            <td>
-              <ng-container *ngIf="user.editMode">
-                <input type="text" [(ngModel)]="user.emailAddress" class="form-control">
-              </ng-container>
-              <ng-container *ngIf="!user.editMode">{{ user.emailAddress }}</ng-container>
-            </td>
-            <td>
-              <ng-container *ngIf="user.editMode">
-                <input type="password" [(ngModel)]="user.password" class="form-control">
-              </ng-container>
-              <ng-container *ngIf="!user.editMode">{{ user.password }}</ng-container>
-            </td>
-            <td>
-              <button class="btn btn-danger" (click)="deleteUser(user.userId)">Delete</button>
-              <button class="btn btn-primary" (click)="toggleEditMode(user)">Update</button>
-              <button class="btn btn-success" (click)="saveUser(user)" *ngIf="user.editMode">Save</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-   <h6> <p class="message">
+  </div>
+
+  <h6>
+    <p class="message">
       1. Click the button to show users.
       <button class="btn btn-primary" (click)="toggleUserDetails()" [disabled]="showUserDetails">Show All Users</button>
       <button class="btn btn-secondary" (click)="hideUserDetails()" [hidden]="!showUserDetails || users.length === 0">Hide User Details</button>
-    </p></h6>
-  </div>
-  
+    </p>
+  </h6>
+  <h6>
+    <p class="message">
+      2. Click the button to show flights.
+      <button class="btn btn-primary" (click)="toggleFlightDetails()" [disabled]="showFlightDetails">Show All Flights</button>
+      <button class="btn btn-secondary" (click)="hideFlightDetails()" [hidden]="!showFlightDetails || flights.length === 0">Hide Flight Details</button>
+    </p>
+  </h6>
+</div>

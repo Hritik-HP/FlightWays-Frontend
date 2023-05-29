@@ -63,17 +63,27 @@ body {
   content: '';
   display: inline-block;
   width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  height: 2px;
   background-color: #333333;
   margin-right: 5px;
 }
 
+.departure::before {
+  border-radius: 0;
+}
+
+.arrival::before {
+  border-radius: 0;
+  margin-left: 5px;
+}
+
 .dotted-line {
   width: 100%;
-  height: 2px;
+  height: 1px;
   background-color: transparent;
   border-top: 1px dotted #333333;
+  flex-grow: 1;
+  margin: 0 10px;
 }
 
 .departure-date {
@@ -136,10 +146,7 @@ h2 {
   color: #333;
 }
 
-.departure:before, .arrival:before {
-  content: '';
-  margin-right: 5px;
-}
+
 
 .departure {
   color: #007bff;
