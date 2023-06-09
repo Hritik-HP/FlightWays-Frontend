@@ -27,4 +27,96 @@
   <div *ngIf="flights.length === 0" class="no-flights">
     <p>No flights found.</p>
   </div>
+</div><div class="container">
+  <h2>Flight Search Results</h2>
+
+  <div *ngIf="flights.length > 0">
+    <div class="card mb-3" *ngFor="let flight of flights">
+      <div class="card-body">
+        <div class="flight-info">
+          <div>
+            <h5 class="flight-name">Flight: {{ flight.flightNumber }}</h5>
+            <p class="departure-arrival">
+              <span class="departure">Departure: {{ flight.departureCity }}</span>
+              <span class="dotted-line"></span>
+              <span class="arrival">Arrival: {{ flight.arrivalCity }}</span>
+            </p>
+            <p class="departure-date">Departure Date: {{ flight.departureDateTime | date: 'yyyy-MM-dd' }}</p>
+          </div>
+          <div>
+            <p class="total-seats">Total Seats: {{ flight.totalSeats }}</p>
+            <p class="price">Price: {{ flight.basePrice }}</p>
+            <button class="btn btn-primary" (click)="showPassengerForm()">Book Flight</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="passenger-list" *ngIf="passengers.length > 0">
+    <div class="passenger-card" *ngFor="let passenger of passengers">
+      <a class="close-icon" (click)="OnRemovePassenger(passenger.passengerId)">
+        <mat-icon>close</mat-icon>
+      </a>
+      <div class="card-content">
+        <h1>{{ passenger.firstName }} {{ passenger.lastName }}</h1>
+        <p>{{ passenger.phoneNumber }}</p>
+        <p>{{ passenger.gender }}</p>
+        <p>{{ passenger.age }}</p>
+        <p class="email">{{ passenger.email }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="passenger-form" *ngIf="showPassenger">
+    <mat-card>
+      <div class="title">
+        <h2>Passenger</h2>
+        <a class="close-icon" (click)="OnCancelPassengerAdd()"><mat-icon>close</mat-icon></a>
+      </div>
+      <form class="example-form" [formGroup]="AddPassengerForm" (ngSubmit)="AddPassenger()">
+        <div class="input-group">
+          <mat-form-field class="input-field">
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" formControlName="firstName">
+          </mat-form-field>
+          <mat-form-field class="input-field">
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" formControlName="lastName">
+          </mat-form-field>
+        </div>
+        <div class="input-group">
+          <mat-form-field class="input-field">
+            <mat-label>Age</mat-label>
+            <input matInput type="number" formControlName="age">
+          </mat-form-field>
+          <mat-form-field class="input-field">
+            <mat-label>Gender</mat-label>
+            <input matInput type="text" formControlName="gender">
+          </mat-form-field>
+        </div>
+        <div class="input-group">
+          <mat-form-field class="input-field">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+          </mat-form-field>
+          <mat-form-field class="input-field">
+            <mat-label>Phone number</mat-label>
+            <input matInput type="tel" formControlName="phonenumber">
+          </mat-form-field>
+        </div>
+        <div class="submit-container">
+          <button mat-raised-button color="primary" class="passenger-submit">
+            <mat-icon>person</mat-icon>
+            <mat-hint>Add Passenger</mat-hint>
+          </button>
+        </div>
+      </form>
+    </mat-card>
+    <a mat-raised-button routerLink="../payments">Go To Payment</a>
+  </div>
+
+  <div *ngIf="flights.length === 0" class="no-flights">
+    <p>No flights found.</p>
+  </div>
 </div>

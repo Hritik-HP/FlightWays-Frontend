@@ -129,6 +129,79 @@
       </div>
       <button class="btn btn-primary" (click)="addFlight()">Add Flight</button>
     </div>
+
+
+  </div>
+
+  <div class="table-container" *ngIf="showPassengerDetails">
+    <h3>Passenger Details</h3>
+    <table class="table table-striped">
+      <!-- Passenger table header -->
+      <thead>
+        <tr>
+          <th scope="col">PassengerId</th>
+          <th scope="col">FirstName</th>
+          <th scope="col">LastName</th>
+          <th scope="col">Age</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let passenger of passengers">
+          <!-- Passenger table row -->
+          <td>{{ passenger.passengerId }}</td>
+          <td>{{ passenger.firstName }}</td>
+          <td>{{ passenger.lastName }}</td>
+          <td>{{ passenger.age }}</td>
+          <td>{{ passenger.gender }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deletePassenger(passenger.passengerId)">Delete</button>
+            <button class="btn btn-primary" (click)="togglePassengerEditMode(passenger)">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="add-passenger-form">
+      <h3>Add Passenger</h3>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" [(ngModel)]="newPassenger.firstName" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" [(ngModel)]="newPassenger.lastName" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" [(ngModel)]="newPassenger.age" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender" [(ngModel)]="newPassenger.gender" class="form-control">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" id="phoneNumber" [(ngModel)]="newPassenger.phoneNumber" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="userId">User ID</label>
+        <input type="number" id="userId" [(ngModel)]="newPassenger.userId" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="flightBookingId">Flight Booking ID</label>
+        <input type="number" id="flightBookingId" [(ngModel)]="newPassenger.flightBookingId" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="flightId">Flight ID</label>
+        <input type="number" id="flightId" [(ngModel)]="newPassenger.flightId" class="form-control">
+      </div>
+      <button class="btn btn-primary" (click)="addPassenger()">Add Passenger</button>
+    </div>
   </div>
 
   <h6>
@@ -143,6 +216,13 @@
       2. Click the button to show flights.
       <button class="btn btn-primary" (click)="toggleFlightDetails()" [disabled]="showFlightDetails">Show All Flights</button>
       <button class="btn btn-secondary" (click)="hideFlightDetails()" [hidden]="!showFlightDetails || flights.length === 0">Hide Flight Details</button>
+    </p>
+  </h6>
+  <h6>
+    <p class="message">
+      3. Click the button to show passengers.
+      <button class="btn btn-primary" (click)="togglePassengerDetails()" [disabled]="showPassengerDetails">Show All Passengers</button>
+      <button class="btn btn-secondary" (click)="hidePassengerDetails()" [hidden]="!showPassengerDetails || passengers.length === 0">Hide Passenger Details</button>
     </p>
   </h6>
 </div>

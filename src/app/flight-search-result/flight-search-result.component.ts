@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FlightsearchService } from '../Services/flightsearch.service';
-import { Subscription } from 'rxjs';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Passenger } from './passenger.model';
+import { PassengerService } from '../Services/passenger.service';
 import { Flight } from './flight.model';
 
 @Component({
@@ -9,54 +11,98 @@ import { Flight } from './flight.model';
   templateUrl: './flight-search-result.component.html',
   styleUrls: ['./flight-search-result.component.css']
 })
-
 export class FlightSearchResultComponent {
-
+  showPassenger = false;
   flights: Flight[] = [] ;
-  showPassengerForm: boolean = false;
-  passengerForm: FormGroup;
-  
 
-  constructor(private flightSearchService: FlightsearchService, private fb: FormBuilder) {
-    this.passengerForm = this.fb.group({
-      passengerName: ['', Validators.required],
-      passengerAge: ['', Validators.required]
-    });
-    this.flightSearchService.getFlights().subscribe
-    ((res) => {this.flights = res
-    console.log(this.flights);
+  passengers: Passenger[] = [];
+
+  constructor(
+    private builder: FormBuilder,
+    private route: Router,
+    private passengerService: PassengerService,
+    private toastr: ToastrService
+  ) {}
+
+  AddPassengerForm = this.builder.group({
+    firstName: this.builder.control('', Validators.required),
+    lastName: this.builder.control('', Validators.required),
+    age: this.builder.control('', Validators.required),
+    gender: this.builder.control('', Validators.required),
+    email: this.builder.control('', Validators.required),
+    phonenumber: this.builder.control('', Validators.required),
+    flightBookingId: [0]
   });
-  }
-    // getFlights(departure: string, arrival: string, departureTime: Date, returnDate: Date): Subscription {
-  //   const departureTimeString = departureTime.toISOString(); // Convert Date to string
-  //   return this.flightSearchService.getFlight(departure, arrival, departureTimeString)
-  //     .subscribe({
-  //       next: (data: any[]) => {
-  //         this.flights = data;
-  //         console.log('Flights:', this.flights);
-  //       },
-  //       error: (error: any) => {
-  //         console.error('Error:', error);
-  //       }
-  //     });
-  // }
 
-  bookFlight(flight: any): void {
-    this.showPassengerForm = true;
+  convertToNumberFromString(value: string | null): number | null {
+    if (value === null) {
+      return null;
+    }
+
+    const parsedValue = parseInt(value, 10);
+
+    if (isNaN(parsedValue)) {
+      return null;
+    }
+
+    return parsedValue;
   }
 
-  // submitPassengerDetails(): void {
-  //   if (this.passengerForm.valid) {
-  //     const passengerName = this.passengerForm.value.passengerName;
-  //     const passengerAge = this.passengerForm.value.passengerAge;
-  //     // Add your logic to handle the submitted passenger details
-  //     console.log('Passenger Name:', passengerName);
-  //     console.log('Passenger Age:', passengerAge);
-  //     // Reset the form fields if needed
-  //     this.passengerForm.reset();
-  //     this.showPassengerForm = false;
-  //   } else {
-  //     alert('Please fill out the form before submitting!');
-  //   }
-  // }
+  OnCancelPassengerAdd() {
+    const passengerId: number | null = this.convertToNumberFromString(sessionStorage.getItem('flightBookingId'));
+
+    if (passengerId !== null) {
+      this.passengerService.onBookingCancel(passengerId).subscribe((res) => {
+        console.log(res);
+        this.toastr.success(res.message);
+        this.route.navigate(['dashboard/flights']);
+      });
+    }
+  }
+
+  AddPassenger() {
+    this.AddPassengerForm.value.flightBookingId = this.convertToNumberFromString(sessionStorage.getItem('flightBookingId'));
+  
+    if (this.AddPassengerForm.valid) {
+      const passenger: Passenger = {
+        passengerId: 0,
+        flightId: null,
+        firstName: this.AddPassengerForm.value.firstName ?? '',
+        lastName: this.AddPassengerForm.value.lastName ?? '',
+        age: this.AddPassengerForm.value.age ? parseInt(this.AddPassengerForm.value.age) : 0,
+        gender: this.AddPassengerForm.value.gender ?? '',
+        email: this.AddPassengerForm.value.email ?? '',
+        phoneNumber: this.AddPassengerForm.value.phonenumber ?? '',
+        userId: null,
+        flightBookingId: 0,
+        editMode: undefined
+      };
+  
+      this.passengerService.onAddPassenger(passenger).subscribe((res: { data: Passenger[] }) => {
+        this.passengers = res.data;
+        console.log(res);
+        console.log(this.passengers);
+      });
+    } else {
+      this.toastr.error('Enter Required details');
+    }
+  }
+  
+  OnRemovePassenger(passengerId: number) {
+    console.log('Passenger Id: ' + passengerId);
+
+    this.passengerService.onDeletePassenger(passengerId).subscribe((res: { success: boolean; data: Passenger[]; message: string }) => {
+      console.log(res);
+
+      if (res.success) {
+        this.passengers = res.data;
+        this.toastr.success(res.message);
+      } else {
+        this.toastr.warning('Something went wrong');
+      }
+    });
+  }
+  showPassengerForm() {
+    this.showPassenger = true;
+  }
 }
