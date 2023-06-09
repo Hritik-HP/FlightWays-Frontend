@@ -15,17 +15,7 @@ export class FlightSearchResultComponent {
   flights: Flight[] = [] ;
   showPassengerForm: boolean = false;
   passengerForm: FormGroup;
-  messagesLeft: string[] = [
-    'Custom message 1',
-    'Custom message 2',
-    'Custom message 3'
-  ];
-
-  messagesRight: string[] = [
-    'Custom message 4',
-    'Custom message 5',
-    'Custom message 6'
-  ];
+  
 
   constructor(private flightSearchService: FlightsearchService, private fb: FormBuilder) {
     this.passengerForm = this.fb.group({
